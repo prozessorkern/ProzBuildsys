@@ -1,15 +1,19 @@
+################################################################################
+#
+#	author: 	Stefan Strobel
+#
+#	purpose:	
+#
+#	license:	This file is subject to the terms and conditions defined in
+#				LICENSE file which is part of this code package
+#
+################################################################################
 
-
-
-OWN_TOOLCHAIN := 
+OWN_TOOLCHAIN := AVR8
 
 TOOLCHAIN_LIST := $(TOOLCHAIN_LIST) $(OWN_TOOLCHAIN)
-SETUP_LIST := $(SETUP_LIST) setup_toolchain
-HELP_LIST := $(HELP_LIST) help_toolchain
 
--include $(wildcard toolchain/*)
-
-ifeq	($(TOOLCHAIN_SET), $(OWN_TOOLCHAIN))
+ifeq	($(TOOLCHAIN), $(OWN_TOOLCHAIN))
 
 ifeq	($(TOOLCHAIN_SET), TRUE)
 	TOOLCHAIN_ERROR := TRUE
@@ -19,15 +23,11 @@ endif
 
 ### Compiler and Assembler
 
-
 test:
-	@echo test successful AVR8
-	
+	@echo test successful ARM_NONE_EABI_GCC
+
 setup_toolchain :
 	@echo setup_toolchain $(TOOLCHAIN_SET) $(TOOLCHAIN_ERROR)
-	
-help_toolchain :
-	@echo blubb
 
 $(OBJS_DIR)%.o : %.c
 	@echo !!! CALL COMPILER - $< - $(@F)
@@ -45,5 +45,5 @@ $(OBJS_DIR)%.o : %.asm
 $(TARGET) : $(OBJECTS)
 	@echo !!! CALL LINKER  - $< - $(@F)
 	$(LINK) 
-
+	
 endif

@@ -1,3 +1,13 @@
+################################################################################
+#
+#	author: 	Stefan Strobel
+#
+#	purpose:	
+#
+#	license:	This file is subject to the terms and conditions defined in
+#				LICENSE file which is part of this code package
+#
+################################################################################
 
 OWN_TOOLCHAIN := AVR8
 
@@ -13,9 +23,10 @@ endif
 
 ### Compiler and Assembler
 
-test:
-	@echo test successful ARM_NONE_EABI_GCC
 
+test:
+	@echo test successful AVR8
+	
 setup_toolchain :
 	@echo setup_toolchain $(TOOLCHAIN_SET) $(TOOLCHAIN_ERROR)
 
@@ -35,5 +46,5 @@ $(OBJS_DIR)%.o : %.asm
 $(TARGET) : $(OBJECTS)
 	@echo !!! CALL LINKER  - $< - $(@F)
 	$(LINK) 
-	
+
 endif
